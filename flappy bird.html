@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Sky Dash- AT</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTMyIDMwTDEyIDMwVjU2SDUyVjMwSDMyWiIgZmlsbD0iI0ZGRDcwMCIgZmlsbC1vcGFjaXR5PSIwLjQiLz48cGF0aCBkPSJNMzIgNEw4IDI0TDEyIDI4TDMyIDEwTDUyIDI4TDU2IDI0TDMyIDRaIiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik0zMiAxNkwxOCAzMEwzMiAyMEw0NiAzMEwzMiAxNloiIGZpbGw9IiM0RkFDRkUiLz48cGF0aCBkPSJNMzIgMTJMOCAzMkwxMiAzNkwzMiAxOEw1MiAzNkw1NiAzMkwzMiAxMloiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNiIvPjwvc3ZnPg==">
+    
+    <style>
+        :root {
+            --primary-yellow: #ffec3d;
+            --beak-orange: #ff9f43;
+            --accent-blue: #4facfe;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --deep-navy: #01040a;
+            --linkedin-blue: #0077b5;
+            --github-gray: #333;
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; background-color: var(--deep-navy);
+            touch-action: none; user-select: none; -webkit-user-select: none;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Custom Icon Styles (Replacing FontAwesome) */
+        .icon-box {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+        .icon-linkedin {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='white' d='M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z'/%3E%3C/svg%3E");
+        }
+        .icon-github {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3E%3Cpath fill='white' d='M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.5 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5.7 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-.7zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z'/%3E%3C/svg%3E");
+        }
+
+        canvas {
+            display: block; position: absolute; inset: 0;
+            width: 100%; height: 100%; image-rendering: auto;
+            z-index: 0; visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .header-ui {
+            position: absolute; top: 0; left: 0; width: 100%;
+            padding: 30px 40px; display: flex; justify-content: space-between;
+            align-items: flex-start; z-index: 110; pointer-events: none;
+            box-sizing: border-box;
+        }
+
+        .logo-at {
+            font-size: 1.8rem; font-weight: 900; color: white;
+            background: linear-gradient(135deg, #fff 0%, #ffd700 50%, #4facfe 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            border: 1.8px solid var(--glass-border);
+            padding: 10px 22px; border-radius: 15px;
+            letter-spacing: 5px; backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            pointer-events: auto; position: relative; overflow: hidden;
+            transition: opacity 0.5s ease;
+        }
+
+        .logo-at::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg); animation: logo-shine 3s infinite linear;
+        }
+        @keyframes logo-shine { 0% { transform: translateX(-150%) rotate(45deg); } 100% { transform: translateX(150%) rotate(45deg); } }
+
+        .btn-info {
+            background: rgba(255,255,255,0.1); color: white; border: 1.5px solid var(--glass-border);
+            width: 45px; height: 45px; border-radius: 50%; font-size: 1.4rem; font-weight: 900;
+            cursor: pointer; pointer-events: auto;
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-info:hover { background: white; color: var(--deep-navy); transform: scale(1.1); }
+
+        .overlay {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 100; transition: opacity 0.6s ease;
+            background: linear-gradient(135deg, #020611 0%, #051937 50%, #004d7a 100%);
+            overflow: hidden; will-change: opacity;
+        }
+
+        #bg-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.8; }
+
+        .content-card {
+            position: relative; text-align: center; color: white; 
+            padding: 3rem 2.5rem; border-radius: 40px; width: min(90%, 550px);
+            backdrop-filter: blur(60px) saturate(180%);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            animation: cardReveal 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: 10;
+        }
+
+        .eagle-logo { width: 80px; height: 80px; margin: 0 auto 0.2rem; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6)); display: block; }
+        @keyframes cardReveal { from { transform: translateY(100px) scale(0.9); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 0.8rem; text-transform: uppercase;
+            letter-spacing: 10px; font-weight: 900;
+            background: linear-gradient(to bottom, #ffffff 40%, #74b9ff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .tagline { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.8; font-weight: 300; line-height: 1.6; }
+
+        .btn-main {
+            background: #ffffff; color: var(--deep-navy); border: none;
+            padding: 18px 45px; border-radius: 100px;
+            font-size: 1.1rem; font-weight: 900; cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            text-transform: uppercase; letter-spacing: 4px; border: 1px solid white;
+            margin: 10px;
+        }
+        .btn-main:hover { transform: translateY(-10px) scale(1.05); background: #fff; }
+
+        .nav-controls {
+            position: absolute; bottom: 30px; right: 30px;
+            display: flex; flex-direction: column; gap: 10px;
+            z-index: 120; pointer-events: none;
+        }
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1); color: white;
+            border: 1px solid var(--glass-border); padding: 12px 25px;
+            border-radius: 15px; font-weight: 800; cursor: pointer;
+            backdrop-filter: blur(10px); transition: 0.3s;
+            pointer-events: auto; font-size: 0.8rem; letter-spacing: 2px;
+            text-align: center; width: 100px;
+        }
+        .btn-exit { background: rgba(255, 71, 87, 0.2); border-color: rgba(255, 71, 87, 0.4); }
+        .btn-exit:hover { background: #ff4757; color: white; transform: scale(1.1); }
+        .btn-back:hover { background: white; color: var(--deep-navy); transform: scale(1.1); }
+
+        .char-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .char-card {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            padding: 20px; border-radius: 25px; cursor: pointer; transition: 0.3s;
+            width: 130px; text-align: center;
+        }
+        .char-card p { margin: 0; font-weight: 800; font-size: 0.9rem; letter-spacing: 1px; margin-top:10px;}
+        .char-card.active { background: white; color: var(--deep-navy); transform: scale(1.1); box-shadow: 0 0 30px var(--accent-blue); }
+
+        .social-modal {
+            position: absolute; inset: 0; z-index: 200; display: none;
+            align-items: center; justify-content: center; backdrop-filter: blur(30px);
+            background: rgba(2, 6, 17, 0.85); transition: 0.5s;
+        }
+
+        .social-btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 15px; padding: 15px 30px; border-radius: 15px;
+            text-decoration: none; color: white; font-weight: 700;
+            margin: 10px auto; width: 240px; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .btn-linkedin { background-color: var(--linkedin-blue); }
+        .btn-linkedin:hover { background-color: #005a87; transform: translateY(-3px); }
+        
+        .btn-github { background-color: var(--github-gray); }
+        .btn-github:hover { background-color: #111; transform: translateY(-3px); }
+
+        .diff-container { display: flex; gap: 15px; justify-content: center; margin-bottom: 3rem; }
+        .diff-btn {
+            background: rgba(255,255,255,0.05); color: white;
+            border: 1px solid var(--glass-border); padding: 16px 28px;
+            border-radius: 24px; cursor: pointer; font-weight: 700;
+        }
+        .diff-btn.active { background: white; color: var(--deep-navy); box-shadow: 0 0 40px rgba(255,255,255,0.3); }
+
+        #hud-left { position: absolute; top: 40px; left: 40px; pointer-events: none; z-index: 10; opacity: 0; transition: opacity 0.5s; }
+        #score-display { font-size: 3.5rem; color: white; font-weight: 900; text-shadow: 0 5px 15px rgba(0,0,0,0.5); letter-spacing: 2px; }
+
+        #life-counter { position: absolute; top: 15px; right: 20px; display: flex; gap: 8px; opacity: 0; transition: 0.8s; pointer-events: none; z-index: 120; }
+        .heart-svg { width: 32px; height: 32px; filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.5)); animation: heartbeat 1.5s infinite ease-in-out; }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+        #start-hint-layer { position: absolute; inset: 0; pointer-events: none; z-index: 5; opacity: 0; transition: 0.5s; }
+        #start-hint { position: absolute; bottom: 15vh; width: 100%; text-align: center; color: white; font-weight: 800; letter-spacing: 6px; animation: floatAnim 3s infinite ease-in-out; }
+        @keyframes floatAnim { 0%, 100% { transform: translateY(0); opacity: 0.2; } 50% { transform: translateY(-20px); opacity: 1; } }
+
+        #flash { position: absolute; inset: 0; background: rgba(255, 0, 0, 0.3); pointer-events: none; opacity: 0; z-index: 5; }
+        .flash-active { animation: flashEffect 0.4s ease-out; }
+        @keyframes flashEffect { 0% { opacity: 1; } 100% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <div id="flash"></div>
+
+    <div class="header-ui">
+        <div class="logo-at" id="logo">AT</div>
+        <button id="info-btn" onclick="openInfo()" class="btn-info">i</button>
+    </div>
+
+    <div class="nav-controls" id="navigation-hud">
+        <button class="nav-btn btn-back" id="global-back-btn" style="display:none;">BACK</button>
+        <button class="nav-btn btn-exit" onclick="exitGame()">EXIT</button>
+    </div>
+
+    <div id="hud-left"><div id="score-display">0</div></div>
+    
+    <div id="life-counter">
+        <div class="heart-svg" id="h1"><svg viewBox="0 0 32 32"><path d="M16 28.5L14.1 26.7C7.3 20.6 2.8 16.5 2.8 11.5 2.8 7.4 6 4.2 10.1 4.2c2.3 0 4.5 1.1 5.9 2.8 1.4-1.7 3.6-2.8 5.9-2.8 4.1 0 7.3 3.2 7.3 7.3 0 5-4.5 9.1-11.3 15.2L16 28.5z" fill="#ff0000"/></svg></div>
+        <div class="heart-svg" id="h2"><svg viewBox="0 0 32 32"><path d="M16 28.5L14.1 26.7C7.3 20.6 2.8 16.5 2.8 11.5 2.8 7.4 6 4.2 10.1 4.2c2.3 0 4.5 1.1 5.9 2.8 1.4-1.7 3.6-2.8 5.9-2.8 4.1 0 7.3 3.2 7.3 7.3 0 5-4.5 9.1-11.3 15.2L16 28.5z" fill="#ff0000"/></svg></div>
+        <div class="heart-svg" id="h3"><svg viewBox="0 0 32 32"><path d="M16 28.5L14.1 26.7C7.3 20.6 2.8 16.5 2.8 11.5 2.8 7.4 6 4.2 10.1 4.2c2.3 0 4.5 1.1 5.9 2.8 1.4-1.7 3.6-2.8 5.9-2.8 4.1 0 7.3 3.2 7.3 7.3 0 5-4.5 9.1-11.3 15.2L16 28.5z" fill="#ff0000"/></svg></div>
+    </div>
+
+    <div id="start-hint-layer"><div id="start-hint">TAP TO FLAP WINGS</div></div>
+
+    <div id="info-modal" class="social-modal">
+        <div class="content-card">
+            <h1>Developer Info</h1>
+            <p class="tagline">Hello, I’m Anurag Tiwari, a BCA student with a strong interest in web development and interactive UI design.<br><br>I enjoy building responsive web experiences.</p>
+            
+            <a href="https://www.linkedin.com/in/anurag-tiwari0770/" target="_blank" class="social-btn btn-linkedin">
+                <span class="icon-box icon-linkedin"></span> LinkedIn
+            </a>
+            <a href="https://github.com/anurag-070" target="_blank" class="social-btn btn-github">
+                <span class="icon-box icon-github"></span> GitHub
+            </a>
+            
+            <button onclick="closeInfo()" class="btn-main" style="margin-top:20px; border:none;">Close</button>
+        </div>
+    </div>
+
+    <div id="welcome-page" class="overlay">
+        <canvas id="bg-canvas"></canvas>
+        <div class="content-card">
+            <svg class="eagle-logo" viewBox="0 0 64 64" fill="none">
+                <path d="M32 30L12 30V56H52V30H32Z" fill="#FFD700" opacity="0.4"/>
+                <path d="M32 4L8 24L12 28L32 10L52 28L56 24L32 4Z" fill="white"/>
+                <path d="M32 16L18 30L32 20L46 30L32 16Z" fill="#4FACFE"/>
+                <path d="M32 12L8 32L12 36L32 18L52 36L56 32L32 12Z" fill="white" opacity="0.6"/>
+            </svg>
+            <h1>Sky Dash</h1>
+            <p class="tagline">Welcome!<br>Fly your way through the clouds.</p>
+            <button id="welcome-next" class="btn-main">Enter</button>
+        </div>
+    </div>
+
+    <div id="char-page" class="overlay" style="display: none; opacity: 0;">
+        <div class="content-card">
+            <h1>Select Avatar</h1>
+            <p class="tagline">Choose your bird. Rule the skies.</p>
+            <div class="char-container">
+                <div class="char-card active" data-bird="eagle">🦅<p>EAGLE</p></div>
+                <div class="char-card" data-bird="pigeon">🕊️<p>PIGEON</p></div>
+                <div class="char-card" data-bird="parrot">🦜<p>PARROT</p></div>
+            </div>
+            <button id="char-next" class="btn-main">Continue</button>
+        </div>
+    </div>
+
+    <div id="mode-page" class="overlay" style="display: none; opacity: 0;">
+        <div class="content-card">
+            <h1>Flight Deck</h1>
+            <p class="tagline">Select Your Difficulty Level.</p>
+            <div class="diff-container">
+                <button class="diff-btn" data-diff="easy">EASY</button>
+                <button class="diff-btn active" data-diff="medium">MEDIUM</button>
+                <button class="diff-btn" data-diff="hard">HARD</button>
+            </div>
+            <button id="game-start-btn" class="btn-main">Take Off</button>
+            <p id="high-score-text" style="margin-top:35px; font-size: 1rem; font-weight: 700; color: #4facfe; letter-spacing: 2px;"></p>
+        </div>
+    </div>
+
+    <div id="game-over-page" class="overlay" style="display: none; opacity: 0;">
+        <div class="content-card">
+            <h1 style="color: #ff4757; background: none; -webkit-text-fill-color: #ff4757;">Game Over</h1>
+            <p id="final-score-text" class="tagline">Your spirit has fallen.</p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <button id="retry-btn" class="btn-main">Restart</button>
+                <button id="game-over-back-btn" class="btn-main" style="background: rgba(255,255,255,0.1); color: white;">Back</button>
+            </div>
+        </div>
+    </div>
+    
+    <canvas id="gameCanvas"></canvas>
+    
+    <script>
+        function openInfo() { document.getElementById('info-modal').style.display = 'flex'; }
+        function closeInfo() { document.getElementById('info-modal').style.display = 'none'; }
+        function exitGame() { window.location.href = "about:blank"; window.close(); }
+
+        const SKINS = {
+            eagle: { body: '#5a331e', secondary: '#2d1a0f', head: '#FFFFFF', beak: '#FFD700', eyeIris: '#ffd700' },
+            pigeon: { body: '#808080', secondary: '#4d4d4d', head: '#a6a6a6', beak: '#333333', eyeIris: '#ff6600' },
+            parrot: { body: '#00cc44', secondary: '#009933', head: '#ffff00', beak: '#333333', wingAccent: '#ff0000', eyeIris: '#ffffff' }
+        };
+        let selectedSkin = 'eagle';
+
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let bgParticles = [];
+        function initParticles() {
+            bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight;
+            bgParticles = [];
+            for(let i=0; i<80; i++) { bgParticles.push({ x: Math.random() * bgCanvas.width, y: Math.random() * bgCanvas.height, size: Math.random() * 2 + 1, speed: Math.random() * 0.5 + 0.1 }); }
+        }
+        function drawParticles() {
+            bgCtx.clearRect(0,0,bgCanvas.width, bgCanvas.height);
+            bgCtx.beginPath();
+            bgParticles.forEach(p => {
+                bgCtx.moveTo(p.x, p.y); bgCtx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                p.y -= p.speed; if(p.y < -10) p.y = bgCanvas.height + 10;
+            });
+            bgCtx.fillStyle = "rgba(255,255,255,0.4)"; bgCtx.fill();
+            requestAnimationFrame(drawParticles);
+        }
+        initParticles(); drawParticles();
+
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score-display');
+        const logoEl = document.getElementById('logo');
+        const infoBtn = document.getElementById('info-btn');
+        const backBtn = document.getElementById('global-back-btn');
+        const welcomePage = document.getElementById('welcome-page');
+        const charPage = document.getElementById('char-page');
+        const modePage = document.getElementById('mode-page');
+        const gameOverPage = document.getElementById('game-over-page');
+        const flashEl = document.getElementById('flash');
+        const lifeHud = document.getElementById('life-counter');
+        const hudLeft = document.getElementById('hud-left');
+        const hintLayer = document.getElementById('start-hint-layer');
+
+        const BASE_WIDTH = 800;
+        const BASE_BIRD_RADIUS = 22;
+        const BASE_PIPE_WIDTH = 85;
+        const BASE_PIPE_GAP = 200;
+        const BASE_GRAVITY = 1000;
+        const BASE_JUMP = -350;
+        const BASE_PIPE_SPEED = 220;
+
+        let dpr = 1, canvasW = 0, canvasH = 0, scale = 1;
+        let bird, pipes = [], score = 0, spawnTimer = 0, lastTime = 0, gameActive = false;
+        let lives = 3, invincibilityTimer = 0;
+        let currentPage = 'welcome';
+
+        const DIFFICULTIES = {
+            easy: { gravity: 0.65, jump: 1.25, pipeSpeed: 0.7, spawnInterval: 2.3, gap: 1.5, moveRange: 30, moveSpeed: 0.001 },
+            medium: { gravity: 1.0, jump: 1.0, pipeSpeed: 1.0, spawnInterval: 1.5, gap: 1.0, moveRange: 60, moveSpeed: 0.002 },
+            hard: { gravity: 1.25, jump: 1.1, pipeSpeed: 1.6, spawnInterval: 1.2, gap: 0.85, moveRange: 100, moveSpeed: 0.004 }
+        };
+
+        let currentDifficulty = 'medium';
+        let gravityPerSec, jumpVel, pipeSpeedPerSec, spawnIntervalSec, pipeGapMultiplier;
+
+        function applyDifficulty() {
+            const d = DIFFICULTIES[currentDifficulty];
+            gravityPerSec = BASE_GRAVITY * scale * d.gravity;
+            jumpVel = BASE_JUMP * scale * d.jump;
+            pipeSpeedPerSec = BASE_PIPE_SPEED * scale * d.pipeSpeed;
+            spawnIntervalSec = d.spawnInterval;
+            pipeGapMultiplier = d.gap;
+        }
+
+        function resize() {
+            canvasW = window.innerWidth; canvasH = window.innerHeight;
+            dpr = window.devicePixelRatio || 1;
+            canvas.width = Math.round(canvasW * dpr); canvas.height = Math.round(canvasH * dpr);
+            ctx.scale(dpr, dpr); scale = canvasW / BASE_WIDTH;
+            if (bird) bird.radius = BASE_BIRD_RADIUS * scale;
+        }
+
+        function startGame() {
+            applyDifficulty();
+            lives = 3; invincibilityTimer = 0;
+            updateHearts(); initBirdPosition();
+            pipes = []; score = 0; spawnTimer = 0;
+            scoreEl.innerText = '0';
+            gameActive = true;
+            canvas.style.visibility = 'visible';
+            logoEl.style.opacity = '0'; infoBtn.style.opacity = '0';
+            hudLeft.style.opacity = '1'; lifeHud.style.opacity = '1'; hintLayer.style.opacity = '1';
+            
+            welcomePage.style.display = 'none';
+            charPage.style.display = 'none';
+            modePage.style.display = 'none';
+            gameOverPage.style.display = 'none';
+            document.getElementById('navigation-hud').style.display = 'none';
+        }
+
+        function initBirdPosition() { bird = { x: canvasW * 0.25, y: canvasH * 0.5, vy: 0, radius: BASE_BIRD_RADIUS * scale, rotation: 0, wingPhase: 0, headBobPhase: 0 }; }
+
+        function updateHearts() {
+            for(let i=1; i<=3; i++) {
+                const h = document.getElementById('h'+i);
+                h.style.transform = i <= lives ? "scale(1)" : "scale(0)";
+                h.style.opacity = i <= lives ? "1" : "0";
+            }
+        }
+
+        function doJump() { if (gameActive) { bird.vy = jumpVel; bird.wingPhase = -0.5; } }
+
+        function drawBird(dt) {
+            ctx.save();
+            if (invincibilityTimer > 0) ctx.globalAlpha = Math.sin(Date.now() * 0.03) * 0.3 + 0.6;
+            const isDiving = bird.vy > 120;
+            const targetRot = isDiving ? 0.6 : Math.max(-0.6, Math.min(0.8, bird.vy / 1100));
+            bird.rotation += (targetRot - bird.rotation) * dt * 10;
+            bird.headBobPhase += dt * 4;
+            ctx.translate(bird.x, bird.y + Math.sin(bird.headBobPhase) * (2 * scale));
+            ctx.rotate(bird.rotation);
+            const r = bird.radius, skin = SKINS[selectedSkin];
+            bird.wingPhase += dt * (isDiving ? 4 : 12 + Math.abs(bird.vy) / 45);
+            const flap = isDiving ? 0.9 : Math.sin(bird.wingPhase);
+            drawEagleWing(-1, flap, r, isDiving, skin);
+            const bodyGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, r);
+            bodyGrad.addColorStop(0, skin.body); bodyGrad.addColorStop(1, skin.secondary);
+            ctx.fillStyle = bodyGrad;
+            ctx.beginPath(); ctx.ellipse(0, 0, r * (isDiving ? 1.4 : 1.3), r * (isDiving ? 0.75 : 0.85), 0, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = skin.head;
+            ctx.beginPath(); ctx.ellipse(r * 0.7, -r * 0.35, r * 0.65, r * 0.6, 0.2, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = skin.beak;
+            
+            if(selectedSkin === 'parrot') {
+                ctx.beginPath(); 
+                ctx.moveTo(r * 1.1, -r * 0.3); 
+                ctx.quadraticCurveTo(r * 1.9, -r * 0.4, r * 1.4, r * 0.4); 
+                ctx.lineTo(r * 1.1, r * 0.1); 
+                ctx.fill();
+            } else {
+                ctx.beginPath(); ctx.moveTo(r * 1.1, -r * 0.35); ctx.quadraticCurveTo(r * 1.7, -r * (isDiving ? 0.6 : 0.5), r * 1.6, 0.1); ctx.quadraticCurveTo(r * 1.3, -r * 0.1, r * 1.1, 0.1); ctx.fill();
+            }
+
+            const eyeX = r * 0.9, eyeY = -r * 0.45, eyeSize = r * 0.18;
+            
+            if(selectedSkin === 'parrot') {
+                ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(eyeX, eyeY, eyeSize * 1.3, 0, Math.PI * 2); ctx.fill();
+            }
+
+            ctx.fillStyle = skin.eyeIris; ctx.beginPath(); ctx.arc(eyeX, eyeY, eyeSize, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = "#000"; ctx.beginPath(); ctx.arc(eyeX, eyeY, eyeSize * 0.6, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = "#FFF"; ctx.beginPath(); ctx.arc(eyeX + eyeSize*0.3, eyeY - eyeSize*0.3, eyeSize * 0.25, 0, Math.PI * 2); ctx.fill();
+            
+            drawEagleWing(1, flap, r, isDiving, skin);
+            ctx.restore();
+        }
+
+        function drawEagleWing(side, flap, r, isDiving, skin) {
+            ctx.save(); ctx.scale(side, 1);
+            ctx.rotate(isDiving ? 1.2 : flap * 0.85);
+            for (let i = 0; i < 6; i++) {
+                const length = r * ((isDiving ? 1.8 : 2.4) - i * 0.25);
+                const width = r * (0.65 - i * 0.05);
+                
+                if(selectedSkin === 'parrot') {
+                    ctx.fillStyle = skin.body;
+                    ctx.beginPath(); ctx.ellipse(-length/2, 0, length/2, width, -0.18 * i, 0, Math.PI * 2); ctx.fill();
+                    ctx.strokeStyle = skin.wingAccent;
+                    ctx.lineWidth = 2 * scale;
+                    ctx.beginPath(); ctx.moveTo(-length/4, 0); ctx.lineTo(-length * 0.8, 0); ctx.stroke();
+                } else {
+                    ctx.fillStyle = i === 0 ? skin.secondary : skin.body;
+                    ctx.beginPath(); ctx.ellipse(-length/2, 0, length/2, width, -0.18 * i, 0, Math.PI * 2); ctx.fill();
+                }
+            }
+            ctx.restore();
+        }
+
+        function drawPipe(p) {
+            const gap = BASE_PIPE_GAP * scale * pipeGapMultiplier, w = BASE_PIPE_WIDTH * scale;
+            const x = p.x; const capH = 30 * scale;
+            const drawSeg = (yS, h, isT) => {
+                ctx.save();
+                const bodyGrd = ctx.createLinearGradient(x, 0, x + w, 0);
+                bodyGrd.addColorStop(0, '#1a1a1a'); bodyGrd.addColorStop(0.5, '#2d5a27'); bodyGrd.addColorStop(1, '#1a1a1a');
+                ctx.fillStyle = bodyGrd; ctx.fillRect(x, yS, w, h);
+                const capY = isT ? yS + h - capH : yS;
+                const cW = w + 12 * scale; const cX = x - 6 * scale;
+                ctx.fillStyle = '#73bf2e'; ctx.fillRect(cX, capY, cW, capH);
+                ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.strokeRect(cX, capY, cW, capH);
+                ctx.restore();
+            };
+            drawSeg(0, p.currentTop, true); drawSeg(p.currentTop + gap, canvasH - (p.currentTop + gap), false);
+        }
+
+        function update(dt) {
+            if (!gameActive) return;
+            const now = Date.now();
+            const d = DIFFICULTIES[currentDifficulty];
+            if (invincibilityTimer > 0) invincibilityTimer -= dt;
+            bird.vy += gravityPerSec * dt; bird.y += bird.vy * dt;
+            if (bird.y > canvasH + 50 || bird.y < -50) triggerDamage();
+            spawnTimer += dt;
+            if (spawnTimer >= spawnIntervalSec) {
+                spawnTimer = 0;
+                pipes.push({ x: canvasW, baseTop: Math.random() * (canvasH - 350) + 75, currentTop: 0, passed: false, seed: Math.random() * 1000 });
+            }
+            for (let i = pipes.length - 1; i >= 0; i--) {
+                const p = pipes[i]; p.x -= pipeSpeedPerSec * dt;
+                p.currentTop = p.baseTop + Math.sin((now + p.seed) * d.moveSpeed) * d.moveRange * scale;
+                const gap = BASE_PIPE_GAP * scale * pipeGapMultiplier, w = BASE_PIPE_WIDTH * scale;
+                if (invincibilityTimer <= 0) {
+                    if (bird.x + bird.radius - 5 > p.x && bird.x - bird.radius + 5 < p.x + w) {
+                        if (bird.y - bird.radius + 5 < p.currentTop || bird.y + bird.radius - 5 > p.currentTop + gap) triggerDamage();
+                    }
+                }
+                if (!p.passed && bird.x > p.x + w) { score++; p.passed = true; scoreEl.innerText = score; }
+                if (p.x < -100) pipes.splice(i, 1);
+            }
+        }
+
+        function triggerDamage() {
+            lives--; updateHearts();
+            flashEl.classList.remove('flash-active'); void flashEl.offsetWidth; flashEl.classList.add('flash-active');
+            if (lives <= 0) endGame(); else { invincibilityTimer = 1.5; initBirdPosition(); }
+        }
+
+        function endGame() {
+            gameActive = false;
+            const best = Math.max(score, localStorage.getItem('flappyHighScore') || 0);
+            localStorage.setItem('flappyHighScore', best);
+            
+            document.getElementById('final-score-text').innerText = `Recent Altitude: ${score} | Record: ${best}`;
+            
+            canvas.style.visibility = 'hidden';
+            hudLeft.style.opacity = '0'; lifeHud.style.opacity = '0'; hintLayer.style.opacity = '0';
+            showPage('game-over'); 
+        }
+
+        function loop(now) {
+            const dt = Math.min(0.016, (now - (lastTime || now)) / 1000); lastTime = now;
+            ctx.clearRect(0, 0, canvasW, canvasH);
+            const skyGrd = ctx.createLinearGradient(0, 0, 0, canvasH);
+            skyGrd.addColorStop(0, '#74b9ff'); skyGrd.addColorStop(1, '#a29bfe');
+            ctx.fillStyle = skyGrd; ctx.fillRect(0, 0, canvasW, canvasH);
+            update(dt); pipes.forEach(drawPipe); if (bird) drawBird(dt);
+            requestAnimationFrame(loop);
+        }
+
+        function showPage(pageId) {
+            currentPage = pageId;
+            welcomePage.style.display = 'none'; welcomePage.style.opacity = '0';
+            charPage.style.display = 'none'; charPage.style.opacity = '0';
+            modePage.style.display = 'none'; modePage.style.opacity = '0';
+            gameOverPage.style.display = 'none'; gameOverPage.style.opacity = '0';
+
+            const activePage = document.getElementById(pageId + '-page');
+            activePage.style.display = 'flex';
+            setTimeout(() => activePage.style.opacity = '1', 50);
+
+            backBtn.style.display = (pageId === 'welcome' || pageId === 'game-over') ? 'none' : 'block';
+            
+            if(pageId !== 'game') {
+                logoEl.style.opacity = '1'; infoBtn.style.opacity = '1';
+                document.getElementById('navigation-hud').style.display = 'flex';
+            }
+        }
+
+        backBtn.addEventListener('click', () => {
+            if (currentPage === 'char') showPage('welcome');
+            else if (currentPage === 'mode') showPage('char');
+        });
+
+        document.getElementById('welcome-next').addEventListener('click', () => showPage('char'));
+        document.querySelectorAll('.char-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.char-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active'); selectedSkin = card.dataset.bird;
+            });
+        });
+        document.getElementById('char-next').addEventListener('click', () => showPage('mode'));
+        document.getElementById('game-start-btn').addEventListener('click', startGame);
+        
+        document.getElementById('retry-btn').addEventListener('click', startGame);
+        document.getElementById('game-over-back-btn').addEventListener('click', () => showPage('mode'));
+
+        document.querySelectorAll('.diff-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active'); currentDifficulty = btn.dataset.diff;
+            });
+        });
+
+        const flapAction = (e) => { if (gameActive) { if (e.type === 'touchstart') e.preventDefault(); doJump(); } };
+        document.addEventListener('mousedown', flapAction);
+        document.addEventListener('touchstart', flapAction, {passive: false});
+        document.addEventListener('keydown', (e) => { if (e.code === 'Space') doJump(); });
+        window.addEventListener('resize', resize); resize(); requestAnimationFrame(loop);
+    </script>
+</body>
+</html>
